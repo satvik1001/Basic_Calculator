@@ -1,0 +1,90 @@
+<!--  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <!--  <h1>Hello World</h1>
+    <p>Welcome to Satvik's Web Page</p>
+
+    <form action="process-form" method="post">
+
+    <input type="text" name="num1">
+    <input type="text" name="num2">
+    <br><br>
+    <button type="Submit">Submit</button>
+    </form>
+
+
+<h1>Calulator</h1>
+
+<form action="/add" method="get">
+  <input type="text" name="num1" placeholder="Enter first number">
+  <input type="text" name="num2" placeholder="Enter Second number">
+ <button type="add">Add</button>
+</form>
+
+<br><br>
+
+<form action="/substract" method="get">
+  <input type="text" name="num1" placeholder="Enter first number">
+  <input type="text" name="num2" placeholder="Enter Second number">
+ <button type="substract">Substract</button>
+</form>
+
+<br><br>
+
+<form action="/multiply" method="get">
+  <input type="text" name="num1" placeholder="Enter first number">
+  <input type="text" name="num2" placeholder="Enter Second number">
+ <button type="multiply">Multiply</button>
+</form>
+
+<br><br>
+
+<form action="/divide" method="get">
+  <input type="text" name="num1" placeholder="Enter first number">
+  <input type="text" name="num2" placeholder="Enter Second number">
+ <button type="divide">Divide</button>
+</form>
+
+
+</body>
+</html>
+-->
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Simple Calculator</title>
+</head>
+<body>
+  <h2>Simple Calculator</h2>
+
+  <input id="a" type="number" placeholder="Enter first number">
+  <input id="b" type="number" placeholder="Enter second number">
+  <br><br>
+
+  <button onclick="calculate('add')">Add</button>
+  <button onclick="calculate('sub')">Subtract</button>
+  <button onclick="calculate('mul')">Multiply</button>
+  <button onclick="calculate('div')">Divide</button>
+
+  <h3>Result: <span id="result"></span></h3>
+
+  <script>
+    function calculate(op) {
+      const a = document.getElementById("a").value;
+      const b = document.getElementById("b").value;
+
+      fetch(`/calc/${op}?a=${a}&b=${b}`)
+        .then(res => res.text())
+        .then(data => document.getElementById("result").innerText = data)
+        .catch(err => document.getElementById("result").innerText = "Error: Divide by zero not allowed " + err);
+    }
+  </script>
+</body>
+</html>
